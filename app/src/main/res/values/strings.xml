@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Yumify</string>
+    <string name="welcome_text">Hey Bilal</string>
+    <string name="what_cook_today">What would you like\nto cook today?</string>
+    <string name="categories">Categories</string>
+    <string name="see_all">See all</string>
+    <string name="search_recipes">Search recipes</string>
+    <string name="recommended">Recommendation</string>
+    <string name="recipes_of_week">Recipes Of Week</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favourite">Favourite</string>
+    <string name="search_categories">Search categories</string>
+</resources>
