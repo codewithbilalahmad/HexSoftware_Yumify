@@ -11,4 +11,7 @@
     <string name="search">Search</string>
     <string name="favourite">Favourite</string>
     <string name="search_categories">Search categories</string>
+    <string name="watch_video">Watch Video</string>
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
 </resources>

@@ -2,7 +2,7 @@ package com.muhammad.yumify.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF578CFF)
+val primaryLight = Color(0xFFF54949)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFF6055D8)
 val onPrimaryContainerLight = Color(0xFFEAE6FF)
@@ -38,8 +38,8 @@ val surfaceContainerLight = Color(0xFFF0ECF8)
 val surfaceContainerHighLight = Color(0xFFEAE6F2)
 val surfaceContainerHighestLight = Color(0xFFE5E1EC)
 
-val primaryDark = Color(0xFFC5C0FF)
-val onPrimaryDark = Color(0xFF2504A0)
+val primaryDark = Color(0xFFC16357)
+val onPrimaryDark = Color(0xFFFFFFFF)
 val primaryContainerDark = Color(0xFF6055D8)
 val onPrimaryContainerDark = Color(0xFFEAE6FF)
 val secondaryDark = Color(0xFFC5C0FB)

@@ -49,10 +49,10 @@ class HomeViewModel(
 
     private fun onRecipeFavouriteToggle(recipe: Recipe) {
         viewModelScope.launch {
-            if(recipe.isFavourite){
+            if (recipe.isFavourite) {
                 favouriteRecipeRepository.deleteFavouriteRecipe(recipe.id)
-            } else{
-                favouriteRecipeRepository.insertFavouriteRecipe(recipe)
+            } else {
+                favouriteRecipeRepository.insertFavouriteRecipe(recipe.copy(timeStamp = System.currentTimeMillis()))
             }
         }
     }

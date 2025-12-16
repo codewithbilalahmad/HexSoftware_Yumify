@@ -8,6 +8,7 @@ import androidx.navigation.toRoute
 import com.muhammad.yumify.presentation.screens.categories.CategoriesScreen
 import com.muhammad.yumify.presentation.screens.category_recipes.CategoryRecipesScreen
 import com.muhammad.yumify.presentation.screens.home.HomeScreen
+import com.muhammad.yumify.presentation.screens.recipe_details.RecipeDetailScreen
 
 @Composable
 fun AppNavigation(navHostController: NavHostController) {
@@ -18,6 +19,7 @@ fun AppNavigation(navHostController: NavHostController) {
         composable<Destinations.SearchScreen>{  }
         composable<Destinations.FavouriteScreen>{  }
         composable<Destinations.RecipeDetailScreen>{
+            RecipeDetailScreen(navHostController = navHostController)
         }
         composable<Destinations.CategoriesScreen>{
             CategoriesScreen(navHostController = navHostController)

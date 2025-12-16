@@ -29,4 +29,8 @@ class RecipeRespositoryImp(
     override suspend fun getCategoriesRecipes(category: String): Result<List<CategoryRecipe>> {
         return recipeNetwork.getCategoriesRecipes(category)
     }
+
+    override suspend fun getRecipeDetail(id: String): Result<Recipe> {
+        return recipeNetwork.getRecipeDetail(id)
+    }
 }

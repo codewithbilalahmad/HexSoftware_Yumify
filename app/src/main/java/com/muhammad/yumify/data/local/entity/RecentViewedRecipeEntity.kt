@@ -12,8 +12,11 @@ data class RecentViewedRecipeEntity(
     val category : String,
     val instructions : String,
     val source : String,
-    val timeStamp : Long = System.currentTimeMillis(),
+    val timeStamp : Long,
+    val isFavourite : Boolean,
     val tags : String,
     val youtubeLink : String,
-    val ingredients: List<RecipeIngredient>
+    val ingredients: List<RecipeIngredient>,
+    val calories : Int,
+    val time : Int
 )

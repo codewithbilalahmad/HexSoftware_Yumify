@@ -1,6 +1,8 @@
 package com.muhammad.yumify.data.remote.network
 
+import com.muhammad.yumify.data.local.dao.FavouriteRecipeDao
 import com.muhammad.yumify.data.remote.dto.CategoryRecipesResponse
+import com.muhammad.yumify.data.remote.dto.RecipeDetailResponse
 import com.muhammad.yumify.data.remote.dto.RecipesCategoryResponse
 import com.muhammad.yumify.data.remote.dto.RecipesResponse
 import com.muhammad.yumify.data.remote.mappers.toCategory
@@ -17,6 +19,7 @@ import io.ktor.client.HttpClient
 
 class RecipeNetworkImp(
     private val httpClient: HttpClient,
+    private val favouriteRecipeDao: FavouriteRecipeDao
 ) : RecipeNetwork {
     override suspend fun getRecommendedRecipe(): Result<List<Recipe>> {
         return httpClient.get<RecipesResponse>(
@@ -25,7 +28,8 @@ class RecipeNetworkImp(
             )
         ).map { data ->
             data.recipes.map {recipe ->
-                recipe.toRecipe()
+                val isFavourite = favouriteRecipeDao.getFavouriteRecipe(recipe.id.orEmpty()) != null
+                recipe.toRecipe(isFavourite = isFavourite)
             }
         }
     }
@@ -37,7 +41,8 @@ class RecipeNetworkImp(
             )
         ).map { data ->
             data.recipes.map {recipe ->
-                recipe.toRecipe()
+                val isFavourite = favouriteRecipeDao.getFavouriteRecipe(recipe.id.orEmpty()) != null
+                recipe.toRecipe(isFavourite = isFavourite)
             }
         }
     }
@@ -49,7 +54,8 @@ class RecipeNetworkImp(
             )
         ).map { data ->
             data.recipes.map {recipe ->
-                recipe.toRecipe()
+                val isFavourite = favouriteRecipeDao.getFavouriteRecipe(recipe.id.orEmpty()) != null
+                recipe.toRecipe(isFavourite = isFavourite)
             }
         }
     }
@@ -73,6 +79,16 @@ class RecipeNetworkImp(
             data.recipes.map {recipe ->
                 recipe.toCategoryRecipe()
             }
+        }
+    }
+
+    override suspend fun getRecipeDetail(id: String): Result<Recipe> {
+        return httpClient.get<RecipeDetailResponse>(route = "lookup.php", queryParameters = mapOf(
+            "i" to id
+        )).map { response ->
+            val recipe = response.recipes.first()
+            val isFavourite = favouriteRecipeDao.getFavouriteRecipe(recipe.id.orEmpty()) != null
+            recipe.toRecipe(isFavourite = isFavourite)
         }
     }
 }

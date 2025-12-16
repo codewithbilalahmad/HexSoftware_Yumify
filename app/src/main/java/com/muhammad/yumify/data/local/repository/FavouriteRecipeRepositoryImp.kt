@@ -21,7 +21,9 @@ class FavouriteRecipeRepositoryImp(
 
     override fun getFavouriteRecipes(): Flow<List<Recipe>> {
         return favouriteRecipeDao.getFavouriteRecipes().map {entities ->
-            entities.map { entity -> entity.toRecipe() }
+            entities.map { entity ->
+                entity.toRecipe()
+            }
         }
     }
 

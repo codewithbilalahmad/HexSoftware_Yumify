@@ -49,6 +49,7 @@ android {
 
 dependencies {
     implementation(libs.coil.compose)
+    implementation(libs.androidx.splashscreen)
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.kotlinx.datetime)

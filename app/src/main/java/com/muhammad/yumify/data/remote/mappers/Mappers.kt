@@ -36,7 +36,7 @@ fun RecipeDto.getIngredients(): List<RecipeIngredient> {
     }.map { (name, measure) -> RecipeIngredient(name.orEmpty(), measure.orEmpty()) }
 }
 
-fun RecipeDto.toRecipe(): Recipe {
+fun RecipeDto.toRecipe(isFavourite : Boolean): Recipe {
     return Recipe(
         id = id.orEmpty(),
         name = name.orEmpty(),
@@ -44,8 +44,8 @@ fun RecipeDto.toRecipe(): Recipe {
         area = area.orEmpty(),
         category = category.orEmpty(),
         instructions = instructions.orEmpty(),
-        tags = tags.orEmpty(),
-        youtubeLink = youtubeLink.orEmpty(),
+        tags = tags.orEmpty(),timeStamp = System.currentTimeMillis(),
+        youtubeLink = youtubeLink.orEmpty(), isFavourite = isFavourite,
         source = source.orEmpty(), ingredients = getIngredients()
     )
 }

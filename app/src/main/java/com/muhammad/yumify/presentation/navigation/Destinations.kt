@@ -1,6 +1,5 @@
 package com.muhammad.yumify.presentation.navigation
 
-import com.muhammad.yumify.domain.model.Recipe
 import kotlinx.serialization.Serializable
 
 sealed interface Destinations {
@@ -15,5 +14,5 @@ sealed interface Destinations {
     @Serializable
     data object FavouriteScreen : Destinations
     @Serializable
-    data class RecipeDetailScreen(val recipe : Recipe) : Destinations
+    data class RecipeDetailScreen(val id : String) : Destinations
 }

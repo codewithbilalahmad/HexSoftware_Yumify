@@ -15,6 +15,7 @@ import com.muhammad.yumify.domain.repository.RecipeRepository
 import com.muhammad.yumify.presentation.screens.categories.CategoriesViewModel
 import com.muhammad.yumify.presentation.screens.category_recipes.CategoryRecipesViewModel
 import com.muhammad.yumify.presentation.screens.home.HomeViewModel
+import com.muhammad.yumify.presentation.screens.recipe_details.RecipeDetailViewModel
 import com.muhammad.yumify.utils.Constants.DATABASE_NAME
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.dsl.singleOf
@@ -40,4 +41,5 @@ val appModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::CategoriesViewModel)
     viewModelOf(::CategoryRecipesViewModel)
+    viewModelOf(::RecipeDetailViewModel)
 }

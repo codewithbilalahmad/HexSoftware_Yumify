@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Immutable
 data class RecipeIngredient(
     val name : String,
-    val measure : String
+    val measure : String,
 )

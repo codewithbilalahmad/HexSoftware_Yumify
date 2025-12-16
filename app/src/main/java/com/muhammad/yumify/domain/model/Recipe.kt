@@ -1,11 +1,9 @@
 package com.muhammad.yumify.domain.model
 
 import androidx.compose.runtime.Immutable
-import kotlinx.serialization.Serializable
 import kotlin.random.Random
 
 @Immutable
-@Serializable
 data class Recipe(
     val id : String,
     val name : String,
@@ -15,6 +13,7 @@ data class Recipe(
     val instructions : String,
     val source : String,
     val tags : String,
+    val timeStamp : Long,
     val isFavourite : Boolean = false,
     val youtubeLink : String,
     val ingredients: List<RecipeIngredient>,

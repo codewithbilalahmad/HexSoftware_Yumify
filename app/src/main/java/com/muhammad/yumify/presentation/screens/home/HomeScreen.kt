@@ -90,7 +90,7 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                     recommendedRecipes = state.recommendedRecipes, onRecipeFavouriteToggle = {recipe ->
                         viewModel.onAction(HomeAction.OnRecipeFavouriteToggle(recipe))
                     }, onRecipeClick = {recipe ->
-
+                        navHostController.navigate(Destinations.RecipeDetailScreen(recipe.id))
                     }
                 )
             }
@@ -100,7 +100,9 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                     recipesOfWeek = state.recipesOfWeek,
                     isRecipesOfWeekLoading = state.isRecipeOfWeekLoading,
                     recipesOfWeekError = state.recipeOfWeekError,
-                    onRecipeClick = {},
+                    onRecipeClick = {recipe ->
+                        navHostController.navigate(Destinations.RecipeDetailScreen(recipe.id))
+                    },
                     onSeeAllRecipeOfWeek = {}, onRecipeFavouriteToggle = {recipe ->
                         viewModel.onAction(HomeAction.OnRecipeFavouriteToggle(recipe))
                     })
