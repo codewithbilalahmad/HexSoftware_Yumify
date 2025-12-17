@@ -87,7 +87,9 @@ class RecipeNetworkImp(
             "i" to id
         )).map { response ->
             val recipe = response.recipes.first()
-            val isFavourite = favouriteRecipeDao.getFavouriteRecipe(recipe.id.orEmpty()) != null
+            val isFavourite = if(recipe.id != null){
+                favouriteRecipeDao.getFavouriteRecipe(recipe.id) != null
+            } else false
             recipe.toRecipe(isFavourite = isFavourite)
         }
     }

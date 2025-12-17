@@ -1,5 +1,6 @@
 package com.muhammad.yumify.presentation.screens.recipe_details
 
+import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -141,8 +142,10 @@ fun RecipeDetailScreen(
                                             .padding(end = 16.dp, top = 8.dp)
                                             .align(Alignment.TopEnd)
                                     ) {
-                                        val icon =
-                                            if (recipe.isFavourite) R.drawable.ic_favourite_filled else R.drawable.ic_favourite_outlined
+                                        val icon by animateIntAsState(
+                                            targetValue = if (recipe.isFavourite) R.drawable.ic_favourite_filled else R.drawable.ic_favourite_outlined,
+                                            animationSpec = MaterialTheme.motionScheme.fastEffectsSpec(), label = "favIcon"
+                                        )
                                         Icon(
                                             imageVector = ImageVector.vectorResource(icon),
                                             contentDescription = null

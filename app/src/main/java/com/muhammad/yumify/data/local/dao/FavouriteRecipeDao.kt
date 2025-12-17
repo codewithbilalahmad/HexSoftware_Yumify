@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.muhammad.yumify.data.local.entity.FavouriteRecipeEntity
-import com.muhammad.yumify.domain.model.Recipe
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -22,6 +21,8 @@ interface FavouriteRecipeDao {
 
     @Query("SELECT id FROM FavouriteRecipeEntity")
     fun getFavouriteRecipeIds(): Flow<List<String>>
-    @Query("SELECT * FROM FavouriteRecipeEntity WHERE id=:id")
-    fun getFavouriteRecipe(id : String): Flow<Recipe>?
+
+    @Query("SELECT * FROM FavouriteRecipeEntity WHERE id = :id")
+     fun getFavouriteRecipe(id: String): Flow<FavouriteRecipeEntity>?
+
 }

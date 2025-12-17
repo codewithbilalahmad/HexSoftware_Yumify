@@ -6,5 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface RecentViewedRecipeRepository {
     suspend fun insertRecentViewedRecipe(recipe: Recipe)
     suspend fun deleteRecentViewedRecipe(id : String)
+    suspend fun getRecentViewedRecipe(id : String) : Flow<Recipe>?
     fun getRecentViewedRecipes() : Flow<List<Recipe>>
 }

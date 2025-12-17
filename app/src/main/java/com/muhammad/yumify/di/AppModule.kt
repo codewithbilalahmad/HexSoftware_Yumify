@@ -14,7 +14,10 @@ import com.muhammad.yumify.domain.repository.RecentViewedRecipeRepository
 import com.muhammad.yumify.domain.repository.RecipeRepository
 import com.muhammad.yumify.presentation.screens.categories.CategoriesViewModel
 import com.muhammad.yumify.presentation.screens.category_recipes.CategoryRecipesViewModel
+import com.muhammad.yumify.presentation.screens.favourite.FavouriteViewModel
+import com.muhammad.yumify.presentation.screens.favourite_recipes.FavouriteRecipesViewModel
 import com.muhammad.yumify.presentation.screens.home.HomeViewModel
+import com.muhammad.yumify.presentation.screens.recently_viewed_recipes.RecentlyViewedRecipesViewModel
 import com.muhammad.yumify.presentation.screens.recipe_details.RecipeDetailViewModel
 import com.muhammad.yumify.utils.Constants.DATABASE_NAME
 import kotlinx.coroutines.Dispatchers
@@ -42,4 +45,7 @@ val appModule = module {
     viewModelOf(::CategoriesViewModel)
     viewModelOf(::CategoryRecipesViewModel)
     viewModelOf(::RecipeDetailViewModel)
+    viewModelOf(::FavouriteViewModel)
+    viewModelOf(::FavouriteRecipesViewModel)
+    viewModelOf(::RecentlyViewedRecipesViewModel)
 }

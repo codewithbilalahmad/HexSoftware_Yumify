@@ -6,8 +6,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -90,9 +90,9 @@ fun AppTextField(
                     Spacer(Modifier.width(8.dp))
                     VerticalDivider(
                         modifier = Modifier
-                            .fillMaxHeight()
+                            .height(24.dp)
                             .clip(CircleShape),
-                        thickness = 1.dp,
+                        thickness = 1.5.dp,
                         color = MaterialTheme.colorScheme.surfaceVariant
                     )
                     Spacer(Modifier.width(4.dp))

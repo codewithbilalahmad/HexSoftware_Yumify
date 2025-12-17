@@ -14,4 +14,10 @@
     <string name="watch_video">Watch Video</string>
     <string name="instructions">Instructions</string>
     <string name="ingredients">Ingredients</string>
+    <string name="recently_viewed">Recently Viewed</string>
+    <string name="no_recently_viewed_recipes">No Recently Viewed recipes found.</string>
+    <string name="no_favourite_recipes">No Favourite Recipes found.</string>
+    <string name="recipes">Recipes</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="favourite_recipes">Favourite Recipes</string>
 </resources>

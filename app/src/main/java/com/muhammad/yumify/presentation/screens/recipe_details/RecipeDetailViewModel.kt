@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.muhammad.yumify.domain.repository.FavouriteRecipeRepository
+import com.muhammad.yumify.domain.repository.RecentViewedRecipeRepository
 import com.muhammad.yumify.domain.repository.RecipeRepository
 import com.muhammad.yumify.domain.utils.onError
 import com.muhammad.yumify.domain.utils.onSuccess
@@ -18,6 +19,7 @@ class RecipeDetailViewModel(
     saveStateHandle: SavedStateHandle,
     private val recipeRepository: RecipeRepository,
     private val favouriteRecipeRepository: FavouriteRecipeRepository,
+    private val recentViewedRecipeRepository: RecentViewedRecipeRepository,
 ) : ViewModel() {
     private val id = saveStateHandle.toRoute<Destinations.RecipeDetailScreen>().id
     private val _state = MutableStateFlow(RecipeDetailsState())
@@ -57,6 +59,7 @@ class RecipeDetailViewModel(
                         recipeDetails = data
                     )
                 }
+                recentViewedRecipeRepository.insertRecentViewedRecipe(recipe = data)
             }.onError { error ->
                 _state.update {
                     it.copy(

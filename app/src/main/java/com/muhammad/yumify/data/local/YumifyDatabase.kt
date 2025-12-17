@@ -11,7 +11,7 @@ import com.muhammad.yumify.data.local.entity.RecentViewedRecipeEntity
 
 @Database(
     entities = [FavouriteRecipeEntity::class, RecentViewedRecipeEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(

@@ -10,6 +10,10 @@ sealed interface Destinations {
     @Serializable
     data object CategoriesScreen : Destinations
     @Serializable
+    data object FavouriteRecipesScreen : Destinations
+    @Serializable
+    data object RecentlyViewedRecipesScreen : Destinations
+    @Serializable
     data class CategoryRecipesScreen(val category : String) : Destinations
     @Serializable
     data object FavouriteScreen : Destinations

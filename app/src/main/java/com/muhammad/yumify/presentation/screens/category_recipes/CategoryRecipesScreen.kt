@@ -42,6 +42,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.muhammad.yumify.R
 import com.muhammad.yumify.presentation.components.AppTextField
+import com.muhammad.yumify.presentation.navigation.Destinations
 import com.muhammad.yumify.presentation.screens.category_recipes.components.CategoryRecipeCard
 import com.muhammad.yumify.utils.loadingEffect
 import org.koin.androidx.compose.koinViewModel
@@ -155,7 +156,9 @@ fun CategoryRecipesScreen(
                     itemsIndexed(state.categoryRecipes, key = { id, _ -> id }) { index, recipe ->
                         val height = if (index % 2 == 0) 250.dp else 200.dp
                         CategoryRecipeCard(
-                            recipe = recipe, onCategoryRecipeClick = {}, height = height,
+                            recipe = recipe, onCategoryRecipeClick = {recipe ->
+                                navHostController.navigate(Destinations.RecipeDetailScreen(recipe.id))
+                            }, height = height,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .animateItem()

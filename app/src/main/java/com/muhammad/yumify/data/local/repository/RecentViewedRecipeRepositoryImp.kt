@@ -22,6 +22,11 @@ class RecentViewedRecipeRepositoryImp(
         recentViewedRecipeDao.deleteRecentViewedRecipe(id)
     }
 
+    override suspend fun getRecentViewedRecipe(id: String): Flow<Recipe>? {
+        val isFavourite = favouriteRecipeDao.getFavouriteRecipe(id) != null
+        return recentViewedRecipeDao.getRecentViewedRecipe(id)?.map {entity -> entity.toRecipe(isFavourite) }
+    }
+
     override fun getRecentViewedRecipes(): Flow<List<Recipe>> {
         return recentViewedRecipeDao.getRecentViewedRecipes().map {entities ->
             entities.map { entity ->
