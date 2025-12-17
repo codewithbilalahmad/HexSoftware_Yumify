@@ -19,6 +19,7 @@ import com.muhammad.yumify.presentation.screens.favourite_recipes.FavouriteRecip
 import com.muhammad.yumify.presentation.screens.home.HomeViewModel
 import com.muhammad.yumify.presentation.screens.recently_viewed_recipes.RecentlyViewedRecipesViewModel
 import com.muhammad.yumify.presentation.screens.recipe_details.RecipeDetailViewModel
+import com.muhammad.yumify.presentation.screens.search.SearchViewModel
 import com.muhammad.yumify.utils.Constants.DATABASE_NAME
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.dsl.singleOf
@@ -48,4 +49,5 @@ val appModule = module {
     viewModelOf(::FavouriteViewModel)
     viewModelOf(::FavouriteRecipesViewModel)
     viewModelOf(::RecentlyViewedRecipesViewModel)
+    viewModelOf(::SearchViewModel)
 }

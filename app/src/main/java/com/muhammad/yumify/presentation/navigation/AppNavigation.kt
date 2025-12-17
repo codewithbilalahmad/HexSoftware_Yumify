@@ -12,6 +12,7 @@ import com.muhammad.yumify.presentation.screens.favourite_recipes.FavouriteRecip
 import com.muhammad.yumify.presentation.screens.home.HomeScreen
 import com.muhammad.yumify.presentation.screens.recently_viewed_recipes.RecentlyViewedRecipesScreen
 import com.muhammad.yumify.presentation.screens.recipe_details.RecipeDetailScreen
+import com.muhammad.yumify.presentation.screens.search.SearchScreen
 
 @Composable
 fun AppNavigation(navHostController: NavHostController) {
@@ -19,7 +20,9 @@ fun AppNavigation(navHostController: NavHostController) {
         composable<Destinations.HomeScreen>{
             HomeScreen(navHostController = navHostController)
         }
-        composable<Destinations.SearchScreen>{  }
+        composable<Destinations.SearchScreen>{
+            SearchScreen(navHostController = navHostController)
+        }
         composable<Destinations.FavouriteScreen>{
             FavouriteScreen(navHostController = navHostController)
         }
