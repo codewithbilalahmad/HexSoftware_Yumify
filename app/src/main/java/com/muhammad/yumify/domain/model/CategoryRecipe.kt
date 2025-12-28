@@ -6,5 +6,5 @@ import androidx.compose.runtime.Immutable
 data class CategoryRecipe(
     val id : String,
     val name : String,
-    val imageUrl : String,
+    val imageUrl : String
 )

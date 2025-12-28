@@ -63,7 +63,7 @@ fun FavouriteRecipesScreen(
             contentPadding = PaddingValues(
                 start = paddingValues.calculateStartPadding(layoutDirection) + 16.dp,
                 end = paddingValues.calculateRightPadding(layoutDirection) + 16.dp,
-                top = paddingValues.calculateTopPadding() + 8.dp,
+                top = paddingValues.calculateTopPadding() + 16.dp,
                 bottom = paddingValues.calculateBottomPadding() + 32.dp
             ),
             verticalArrangement = Arrangement.spacedBy(12.dp),

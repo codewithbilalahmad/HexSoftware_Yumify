@@ -91,7 +91,7 @@ fun CategoriesScreen(
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(200.dp)
+                                .height(180.dp)
                                 .clip(
                                     RoundedCornerShape(16.dp)
                                 )
@@ -142,7 +142,9 @@ fun CategoriesScreen(
                     ),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    item(span = StaggeredGridItemSpan.FullLine, key = "category_searchBar") {
+                    item(span = StaggeredGridItemSpan.FullLine, key = "category_searchBar", contentType = {
+                        "category_searchBar"
+                    }) {
                         AppTextField(
                             value = state.query, hint = R.string.search_categories,
                             onValueChange = { newValue ->
@@ -154,7 +156,9 @@ fun CategoriesScreen(
                                 .animateItem()
                         )
                     }
-                    itemsIndexed(state.categories, key = { id, _ -> id }) { index, category ->
+                    itemsIndexed(state.categories, key = { id, _ -> id }, contentType = {id, _ ->
+                        "category_$id"
+                    }) { index, category ->
                         val height = if (index % 2 == 0) 250.dp else 200.dp
                         CategoryCard(
                             category = category, onCategoryClick = {category ->

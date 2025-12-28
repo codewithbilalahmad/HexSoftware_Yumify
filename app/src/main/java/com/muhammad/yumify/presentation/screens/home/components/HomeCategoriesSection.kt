@@ -71,7 +71,7 @@ fun HomeCategoriesSection(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     contentPadding = PaddingValues(start = 24.dp)
                 ) {
-                    items(10) {
+                    items(10, key = {it}) {
                         Box(
                             modifier = Modifier
                                 .size(70.dp)
@@ -104,7 +104,9 @@ fun HomeCategoriesSection(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     contentPadding = PaddingValues(horizontal = 24.dp)
                 ) {
-                    items(categories, key = { it.id }) { category ->
+                    items(categories, key = { it.id }, contentType = {
+                        "categories${it.id}"
+                    }) { category ->
                         RecipeHomeCategoryCard(category = category, onCategoryClick = { category ->
                             onCategoryClick(category)
                         })

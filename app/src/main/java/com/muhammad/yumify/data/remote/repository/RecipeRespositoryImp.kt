@@ -14,6 +14,14 @@ class RecipeRespositoryImp(
         return recipeNetwork.getRecommendedRecipe()
     }
 
+    override suspend fun getPopularChoices(): Result<List<Recipe>> {
+        return recipeNetwork.getPopularChoices()
+    }
+
+    override suspend fun getNewRecipes(): Result<List<Recipe>> {
+        return recipeNetwork.getNewRecipes()
+    }
+
     override suspend fun getRecipesOfWeek(): Result<List<Recipe>> {
         return recipeNetwork.getRecipesOfWeek()
     }

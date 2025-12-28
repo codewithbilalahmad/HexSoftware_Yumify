@@ -69,9 +69,9 @@ fun RecommendedRecipesSection(
                 LazyRow(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    contentPadding = PaddingValues(start = 24.dp)
+                    contentPadding = PaddingValues(horizontal = 24.dp)
                 ) {
-                    items(10) {
+                    items(10, key = {it}) {
                         Box(
                             modifier = Modifier
                                 .size(width = 150.dp, height = 200.dp)
@@ -104,7 +104,9 @@ fun RecommendedRecipesSection(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     contentPadding = PaddingValues(horizontal = 24.dp)
                 ) {
-                    items(recommendedRecipes, key = { it.id }) { recipe ->
+                    items(recommendedRecipes, key = { it.id }, contentType = {
+                        "recommended_recipes${it.id}"
+                    }) { recipe ->
                         RecommendedRecipeItem(recipe = recipe, onRecipeClick = onRecipeClick, onRecipeFavouriteToggle = onRecipeFavouriteToggle)
                     }
                 }

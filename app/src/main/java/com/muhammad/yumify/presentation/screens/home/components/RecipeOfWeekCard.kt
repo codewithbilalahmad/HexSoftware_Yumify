@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import com.muhammad.yumify.R
 import com.muhammad.yumify.domain.model.Recipe
 import com.muhammad.yumify.presentation.components.AppImage
+import com.muhammad.yumify.presentation.components.FavouriteIconButton
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -125,26 +126,14 @@ fun RecipeOfWeekCard(
                         )
                     }
                 }
-                IconButton(
-                    onClick = {
-                        onFavouriteRecipeToggle(recipe)
-                    }, modifier = Modifier.padding(8.dp).align(Alignment.TopEnd).size(IconButtonDefaults.extraSmallContainerSize()),
-                    colors = IconButtonDefaults.iconButtonColors(
-                        containerColor = MaterialTheme.colorScheme.error,
-                        contentColor = MaterialTheme.colorScheme.onError
-                    )
-                ) {
-                    val icon by animateIntAsState(
-                        targetValue = if (recipe.isFavourite) R.drawable.ic_favourite_filled else R.drawable.ic_favourite_outlined,
-                        animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
-                        label = "favIcon"
-                    )
-                    Icon(
-                        imageVector = ImageVector.vectorResource(icon),
-                        contentDescription = null,
-                        modifier = Modifier.size(IconButtonDefaults.extraSmallIconSize)
-                    )
-                }
+                FavouriteIconButton(
+                    onFavouriteToggle = onFavouriteRecipeToggle,
+                    recipe = recipe,
+                    isSmallIconButton = true,
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .align(Alignment.TopEnd)
+                )
             }
             Column(
                 modifier = Modifier

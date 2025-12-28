@@ -7,6 +7,8 @@ import com.muhammad.yumify.domain.utils.Result
 
 interface RecipeRepository{
     suspend fun getRecommendedRecipe() : Result<List<Recipe>>
+    suspend fun getPopularChoices() : Result<List<Recipe>>
+    suspend fun getNewRecipes() : Result<List<Recipe>>
     suspend fun getRecipesOfWeek() : Result<List<Recipe>>
     suspend fun getSearchRecipe(query : String) : Result<List<Recipe>>
     suspend fun getRecipesCategories() : Result<List<RecipeCategory>>

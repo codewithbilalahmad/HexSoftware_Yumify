@@ -3,7 +3,6 @@ package com.muhammad.yumify.presentation.screens.home.components
 import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.os.Build
-import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -21,11 +20,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
@@ -43,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import com.muhammad.yumify.R
 import com.muhammad.yumify.domain.model.Recipe
 import com.muhammad.yumify.presentation.components.AppImage
+import com.muhammad.yumify.presentation.components.FavouriteIconButton
 import com.muhammad.yumify.utils.rippleClickable
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -124,30 +122,14 @@ fun RecommendedRecipeItem(
                     )
                 }
             }
-            IconButton(
-                onClick = {
-                    onRecipeFavouriteToggle(recipe)
-                },
+            FavouriteIconButton(
+                onFavouriteToggle = onRecipeFavouriteToggle,
+                recipe = recipe,
+                isSmallIconButton = true,
                 modifier = Modifier
                     .padding(8.dp)
                     .align(Alignment.BottomStart)
-                    .size(IconButtonDefaults.extraSmallContainerSize()),
-                colors = IconButtonDefaults.iconButtonColors(
-                    containerColor = MaterialTheme.colorScheme.error,
-                    contentColor = MaterialTheme.colorScheme.onError
-                )
-            ) {
-                val icon by animateIntAsState(
-                    targetValue = if (recipe.isFavourite) R.drawable.ic_favourite_filled else R.drawable.ic_favourite_outlined,
-                    animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
-                    label = "favIcon"
-                )
-                Icon(
-                    imageVector = ImageVector.vectorResource(icon),
-                    contentDescription = null,
-                    modifier = Modifier.size(IconButtonDefaults.extraSmallIconSize)
-                )
-            }
+            )
         }
         Spacer(Modifier.height(8.dp))
         Text(

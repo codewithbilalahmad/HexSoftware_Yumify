@@ -1,4 +1,4 @@
-package com.muhammad.yumify.presentation.screens.home.components
+package com.muhammad.yumify.presentation.screens.search.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,8 +8,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,13 +33,13 @@ import com.muhammad.yumify.utils.loadingEffect
 import com.muhammad.yumify.utils.rippleClickable
 
 @Composable
-fun RecipesOfWeekSection(
+fun PopularChoicesSection(
     modifier: Modifier = Modifier,
-    recipesOfWeek: List<Recipe>,
+    popularChoices : List<Recipe>,
     onRecipeFavouriteToggle: (Recipe) -> Unit,
-    onSeeAllRecipeOfWeek: () -> Unit,
-    isRecipesOfWeekLoading: Boolean,
-    recipesOfWeekError: String?,
+    onSeeAllPopularRecipes: () -> Unit,
+    isPopularChoicesLoading: Boolean,
+    popularChoicesError: String?,
     onRecipeClick: (Recipe) -> Unit,
 ) {
     Column(
@@ -52,13 +55,13 @@ fun RecipesOfWeekSection(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = stringResource(R.string.recipes_of_week),
+                text = stringResource(R.string.popular_choices),
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
             )
             Text(
                 text = stringResource(R.string.see_all),
                 modifier = Modifier.rippleClickable(
-                    onClick = onSeeAllRecipeOfWeek
+                    onClick = onSeeAllPopularRecipes
                 ), style = MaterialTheme.typography.bodyMedium.copy(
                     color = MaterialTheme.colorScheme.surface,
                     fontWeight = FontWeight.Bold
@@ -66,7 +69,7 @@ fun RecipesOfWeekSection(
             )
         }
         when {
-            isRecipesOfWeekLoading -> {
+            isPopularChoicesLoading -> {
                 LazyRow(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -78,20 +81,21 @@ fun RecipesOfWeekSection(
                                 .size(width = 280.dp, height = 200.dp)
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(MaterialTheme.colorScheme.surfaceVariant)
+                                .padding(horizontal = 16.dp)
                                 .loadingEffect()
                         )
                     }
                 }
             }
 
-            recipesOfWeekError != null -> {
+            popularChoicesError != null -> {
                 Image(
                     painter = painterResource(R.drawable.wireless),
                     contentDescription = null,
                     modifier = Modifier.size(60.dp)
                 )
                 Text(
-                    text = recipesOfWeekError,
+                    text = popularChoicesError,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = MaterialTheme.colorScheme.error,
                         textAlign = TextAlign.Center
@@ -105,11 +109,12 @@ fun RecipesOfWeekSection(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     contentPadding = PaddingValues(horizontal = 24.dp)
                 ) {
-                    items(recipesOfWeek, key = { it.id }, contentType = {
-                        "recipes_of_week${it.id}"
+                    items(popularChoices, key = { it.id }, contentType = {
+                        "popular_choices${it.id}"
                     }) { recipe ->
-                        RecipeOfWeekCard(
+                        SearchRecipeItem(
                             recipe = recipe,
+                            modifier = Modifier.width(280.dp).wrapContentHeight(),
                             onRecipeClick = onRecipeClick,
                             onFavouriteRecipeToggle = onRecipeFavouriteToggle
                         )

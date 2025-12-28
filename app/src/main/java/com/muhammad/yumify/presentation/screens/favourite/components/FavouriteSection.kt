@@ -150,7 +150,7 @@ fun FavouriteSection(
                             url = recipes.drop(1).first().imageUrl,
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier
-                                .weight(1f)
+                                .fillMaxWidth()
                                 .height(100.dp)
                                 .border(
                                     width = 1.5.dp,
@@ -162,7 +162,7 @@ fun FavouriteSection(
                             url = recipes.drop(2).first().imageUrl,
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier
-                                .weight(1f)
+                                .fillMaxWidth()
                                 .height(100.dp)
                                 .border(
                                     width = 1.5.dp,
@@ -201,7 +201,7 @@ fun FavouriteSection(
                             url = recipes.drop(1).first().imageUrl,
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier
-                                .weight(1f)
+                                .fillMaxWidth()
                                 .height(100.dp)
                                 .border(
                                     width = 1.5.dp,

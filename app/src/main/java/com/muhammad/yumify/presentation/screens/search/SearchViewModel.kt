@@ -24,12 +24,50 @@ class SearchViewModel(
     private var searchJob: Job? = null
 
     init {
+        onAction(SearchAction.GetPopularChoices)
+        onAction(SearchAction.GetNewRecipes)
         observeSearchQuery()
     }
 
     fun onAction(action: SearchAction) {
         when (action) {
             is SearchAction.OnSearchQueryChange -> onSearchQueryChange(action.query)
+            SearchAction.GetPopularChoices -> getPopularChoices()
+            SearchAction.GetNewRecipes -> getNewRecipes()
+        }
+    }
+
+    private fun getNewRecipes() {
+        viewModelScope.launch {
+            _state.update { it.copy(newRecipeLoading = true) }
+            recipeRepository.getNewRecipes().onSuccess { data ->
+                _state.update {
+                    it.copy(
+                        newRecipeLoading = false,
+                        newRecipeError = null,
+                        newRecipes = data
+                    )
+                }
+            }.onError { error ->
+                _state.update { it.copy(newRecipeLoading = false, newRecipeError = error) }
+            }
+        }
+    }
+
+    private fun getPopularChoices() {
+        viewModelScope.launch {
+            _state.update { it.copy(popularChoiceLoading = true) }
+            recipeRepository.getPopularChoices().onSuccess { data ->
+                _state.update {
+                    it.copy(
+                        popularChoiceLoading = false,
+                        popularChoiceError = null,
+                        popularChoices = data
+                    )
+                }
+            }.onError { error ->
+                _state.update { it.copy(popularChoiceLoading = false, popularChoiceError = error) }
+            }
         }
     }
 
@@ -42,7 +80,7 @@ class SearchViewModel(
         viewModelScope.launch {
             state.map { it.searchQuery }.debounce(500).distinctUntilChanged()
                 .collectLatest { query ->
-                    if(query.isBlank()){
+                    if (query.isBlank()) {
                         _state.update {
                             it.copy(
                                 isSearchLoading = false,
@@ -50,7 +88,7 @@ class SearchViewModel(
                                 searchError = null
                             )
                         }
-                    } else{
+                    } else {
                         searchJob?.cancel()
                         searchJob = getSearchRecipes(query)
                     }

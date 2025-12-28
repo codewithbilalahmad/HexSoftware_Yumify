@@ -47,6 +47,32 @@ class RecipeNetworkImp(
         }
     }
 
+    override suspend fun getPopularChoices(): Result<List<Recipe>> {
+        return httpClient.get<RecipesResponse>(
+            "search.php", queryParameters = mapOf(
+                "f" to "c"
+            )
+        ).map { data ->
+            data.recipes.map {recipe ->
+                val isFavourite = favouriteRecipeDao.getFavouriteRecipe(recipe.id.orEmpty()) != null
+                recipe.toRecipe(isFavourite = isFavourite)
+            }
+        }
+    }
+
+    override suspend fun getNewRecipes(): Result<List<Recipe>> {
+        return httpClient.get<RecipesResponse>(
+            "search.php", queryParameters = mapOf(
+                "f" to "d"
+            )
+        ).map { data ->
+            data.recipes.map {recipe ->
+                val isFavourite = favouriteRecipeDao.getFavouriteRecipe(recipe.id.orEmpty()) != null
+                recipe.toRecipe(isFavourite = isFavourite)
+            }
+        }
+    }
+
     override suspend fun getSearchRecipe(query: String): Result<List<Recipe>> {
         return httpClient.get<RecipesResponse>(
             "search.php", queryParameters = mapOf(

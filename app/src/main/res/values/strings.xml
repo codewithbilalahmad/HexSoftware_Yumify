@@ -20,4 +20,10 @@
     <string name="recipes">Recipes</string>
     <string name="bookmark">Bookmark</string>
     <string name="favourite_recipes">Favourite Recipes</string>
+    <string name="popular_choices">Popular Choices</string>
+    <string name="new_recipes">New Recipes</string>
+    <string name="calories">Calories</string>
+    <string name="cal">Cal</string>
+    <string name="app_desp">More than just cooking</string>
+    <string name="popular">Popular</string>
 </resources>

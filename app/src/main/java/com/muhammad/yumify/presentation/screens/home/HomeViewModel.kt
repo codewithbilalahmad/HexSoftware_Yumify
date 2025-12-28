@@ -33,6 +33,7 @@ class HomeViewModel(
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), HomeState())
 
     init {
+        onAction(HomeAction.GetPopularRecipes)
         onAction(HomeAction.GetRecipeCategories)
         onAction(HomeAction.GetRecommendedRecipes)
         onAction(HomeAction.GetRecipesOfWeek)
@@ -44,9 +45,30 @@ class HomeViewModel(
             HomeAction.GetRecipesOfWeek -> getRecipesOfWeek()
             HomeAction.GetRecommendedRecipes -> getRecommendedRecipes()
             is HomeAction.OnRecipeFavouriteToggle -> onRecipeFavouriteToggle(action.recipe)
+            HomeAction.GetPopularRecipes -> getPopularRecipes()
         }
     }
-
+    private fun getPopularRecipes(){
+        viewModelScope.launch {
+            _state.update { it.copy(isPopularRecipeLoading = true) }
+            recipeRepository.getRecipesOfWeek().onSuccess { data ->
+                _state.update {
+                    it.copy(
+                        isPopularRecipeLoading = false,
+                        popularRecipeError = null,
+                        popularRecipes = data
+                    )
+                }
+            }.onError { error ->
+                _state.update {
+                    it.copy(
+                        isPopularRecipeLoading = false,
+                        popularRecipeError = error
+                    )
+                }
+            }
+        }
+    }
     private fun onRecipeFavouriteToggle(recipe: Recipe) {
         viewModelScope.launch {
             if (recipe.isFavourite) {

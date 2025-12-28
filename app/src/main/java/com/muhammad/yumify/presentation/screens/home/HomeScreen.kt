@@ -3,12 +3,14 @@ package com.muhammad.yumify.presentation.screens.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.waterfall
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -46,12 +48,12 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                     navController = navHostController
                 )
             }
-        },
+        }, contentWindowInsets = WindowInsets.waterfall,
         containerColor = MaterialTheme.colorScheme.surfaceContainer
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(
-                top = paddingValues.calculateTopPadding() + 8.dp,
+                top = paddingValues.calculateTopPadding(),
                 bottom = paddingValues.calculateBottomPadding() + 16.dp,
                 start = paddingValues.calculateStartPadding(layoutDirection),
                 end = paddingValues.calculateEndPadding(layoutDirection)
@@ -62,7 +64,9 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                     modifier = Modifier
                         .fillMaxWidth()
                         .animateItem(), onSearchClick = {
-                    })
+                    }, isPopularRecipeLoading = state.isPopularRecipeLoading,
+                    popularRecipeError = state.popularRecipeError,
+                    popularRecipes = state.popularRecipes, onPopularRecipeClick = {})
             }
             item("HomeCategoriesSection") {
                 HomeCategoriesSection(

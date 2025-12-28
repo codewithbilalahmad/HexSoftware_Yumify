@@ -90,7 +90,7 @@ fun CategoryRecipesScreen(
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(200.dp)
+                                .height(180.dp)
                                 .clip(
                                     RoundedCornerShape(16.dp)
                                 )
@@ -153,7 +153,10 @@ fun CategoryRecipesScreen(
                                 .animateItem()
                         )
                     }
-                    itemsIndexed(state.categoryRecipes, key = { id, _ -> id }) { index, recipe ->
+                    itemsIndexed(state.categoryRecipes, key = { id, _ -> id }, contentType = {
+                        id, _ ->
+                        "category_recipe_$id"
+                    }) { index, recipe ->
                         val height = if (index % 2 == 0) 250.dp else 200.dp
                         CategoryRecipeCard(
                             recipe = recipe, onCategoryRecipeClick = {recipe ->
